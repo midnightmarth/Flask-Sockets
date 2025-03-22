@@ -14,18 +14,13 @@ def home():
 @socketio.on('connect', namespace='/test')
 def test_connect():
     emit('my connection', {'data': 'Connected'})
-    socketio.send
 
 @socketio.on('my new message', namespace='/test')
 def test_message(message):
-    # print(f"Message: {message['somethingElse']}")
-    emit('new message', {'data': message['data']})
-    
+    print(message)
+    emit('new message', {'data': message['data']}, broadcast=True)
     
 if __name__ == '__main__':
     HOST = environ.get('SERVER_HOST', 'localhost')
     PORT = int(environ.get('SERVER_PORT', '5000'))
     socketio.run(app, host=HOST, port=PORT, debug=True)
-    
-    
-# Adding code that interfaces with that new SecretPython.py file At some point

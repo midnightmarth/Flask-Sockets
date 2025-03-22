@@ -1,6 +1,7 @@
 $(document).ready(function () {
-    var socket = io.connect('http://localhost:' + location.port + '/test');
+    let socket = io.connect('http://localhost:' + location.port + '/test');
     socket.on('my connection', function (msg) {
+        console.log(msg);
         $('#log').append('<p>Status: ' + msg.data + '</p>');
     });
     socket.on('new message', function (msg) {
